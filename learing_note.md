@@ -23,3 +23,11 @@
 3. spring IOC 依赖注入 控制反转
 
    @Component
+
+
+
+​		@Atowired
+
+​		@Value
+
+4. github 超时问题，之后拟采用gitee账号进行替代
