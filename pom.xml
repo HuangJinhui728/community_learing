@@ -69,8 +69,7 @@
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-mysql</artifactId>
-            <version>8.5.0</version>
+            <artifactId>flyway-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -80,24 +79,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>8.5.0</version>
-                <configuration>
-                    <url>jdbc:mysql://localhost:3306/community</url>
-                    <user>root</user>
-                    <password>hjh763251</password>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.28</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
         </plugins>
+
     </build>
 
 </project>
