@@ -1,6 +1,5 @@
 package com.hjhtest.community.data_transfer_object;
 
-import com.hjhtest.community.model.Question;
 import lombok.Data;
 
 import java.util.ArrayList;
