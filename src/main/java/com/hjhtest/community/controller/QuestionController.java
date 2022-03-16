@@ -25,6 +25,8 @@ public class QuestionController {
                            Model model){
 
         QuestionDTO questionDTO = questionService.getByID(id);
+
+        questionService.incView(id);
         model.addAttribute("question",questionDTO);
         return "question";
     }

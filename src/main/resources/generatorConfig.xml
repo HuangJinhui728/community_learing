@@ -34,6 +34,7 @@
 
         <table tableName="question" domainObjectName="Question"/>
         <table tableName="user" domainObjectName="User"/>
+        <table tableName="comment" domainObjectName="Comment"/>
 
     </context>
 </generatorConfiguration>

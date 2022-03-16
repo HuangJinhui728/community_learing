@@ -1,5 +1,6 @@
 package com.hjhtest.community.service;
 
+import com.hjhtest.community.mapper.QuestionExtMapper;
 import com.hjhtest.community.mapper.UserMapper;
 import com.hjhtest.community.model.User;
 import com.hjhtest.community.model.UserExample;
@@ -18,6 +19,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
+
 
     public void createOrUpDate(User user) {
         UserExample userExample = new UserExample();

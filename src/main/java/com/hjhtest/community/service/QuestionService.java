@@ -1,7 +1,12 @@
 package com.hjhtest.community.service;
 
+import com.hjhtest.community.advice.CustomizeExceptionHandler;
 import com.hjhtest.community.data_transfer_object.PaginationDTO;
 import com.hjhtest.community.data_transfer_object.QuestionDTO;
+import com.hjhtest.community.exception.CustomizeErrorCode;
+import com.hjhtest.community.exception.CustomizeException;
+import com.hjhtest.community.exception.ICustomizeErrorCode;
+import com.hjhtest.community.mapper.QuestionExtMapper;
 import com.hjhtest.community.mapper.QuestionMapper;
 import com.hjhtest.community.mapper.UserMapper;
 import com.hjhtest.community.model.Question;
@@ -30,6 +35,9 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
 
 
@@ -128,6 +136,9 @@ public class QuestionService {
     public QuestionDTO getByID(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
 
+        if(question == null){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
 
         UserExample userExample = new UserExample();
         userExample.createCriteria().andIdEqualTo(question.getCreator());
@@ -163,8 +174,20 @@ public class QuestionService {
             QuestionExample example = new QuestionExample();
             example.createCriteria()
                     .andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion,example);
+            int update = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if(update != 1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
+
+    }
+
+    public void incView(Integer id) {
+        Question question = questionMapper.selectByPrimaryKey(id);
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
+
 
     }
 }

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.PushBuilder;
+import java.util.HashSet;
 
 /**
  * @ClassName: PublishController
@@ -36,8 +38,15 @@ public class PublishController {
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tag",question.getTag());
         model.addAttribute("id",question.getId());
+
+
+
+
         return "publish";
     }
+
+
+
 
 
     @GetMapping("/publish")
