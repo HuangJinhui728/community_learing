@@ -24,7 +24,8 @@ public class UserService {
     public void createOrUpDate(User user) {
         UserExample userExample = new UserExample();
         userExample.createCriteria()
-                    .andAccountIdEqualTo(user.getAccountId());
+                    .andAccountIdEqualTo(user.getAccountId())
+                    .andLognetEqualTo(user.getLognet());
 
         List<User> dbusers = userMapper.selectByExample(userExample);
 

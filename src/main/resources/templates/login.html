@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/community.css">
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+
+<div class="container-fluid main">
+    <div class="jumbotron">
+        <h1 align="center" >第三方登录选择</h1>
+
+        <p></p>
+        <p></p>
+        <div class="row">
+            <div class="col-lg-6 clo-md-6 clo-sm-6 clo-xs-6" >
+                <p align="center"><a class="btn btn-primary btn-lg" href="https://github.com/login/oauth/authorize?client_id=3d366c47bdba7a164d16&redirect_uri=http://localhost:8887/callback&scope=user&state=1" role="button">Github登录</a></p>
+            </div>
+            <div class="col-lg-6 clo-md-6 clo-sm-6 clo-xs-6" >
+                <p align="center"><a class="btn btn-primary btn-lg" href="https://gitee.com/oauth/authorize?client_id=41b83c35d0fb4ab080afdb737bbadb5cbce3fd98e3a221ac0427b8b23752dc76&redirect_uri=http://localhost:8887/callbackgitee&response_type=code" role="button">Gitee登录</a></p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-lg-12 clo-md-12 clo-sm-12 clo-xs-12" ></div>
+    </div>
+</div>
+</body>
+</html>

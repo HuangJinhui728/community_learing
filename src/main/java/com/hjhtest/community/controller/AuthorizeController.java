@@ -1,8 +1,11 @@
 package com.hjhtest.community.controller;
 
 import com.hjhtest.community.data_transfer_object.AccessTokenDTO;
+import com.hjhtest.community.data_transfer_object.AccessTokenGiteeDTO;
+import com.hjhtest.community.data_transfer_object.GiteeUserDTO;
 import com.hjhtest.community.data_transfer_object.GithubUserDTO;
 import com.hjhtest.community.model.User;
+import com.hjhtest.community.provider.GiteeProvider;
 import com.hjhtest.community.provider.GithubProvider;
 import com.hjhtest.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +30,24 @@ public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
 
+
+    @Autowired
+    private GiteeProvider giteeProvider;
+
     @Value("${github.client.id}")
-    private String clientId;
+    private String githubClientId;
     @Value("${github.client.secret}")
-    private String clientSecret;
+    private String githubClientSecret;
     @Value("${github.redirect.uri}")
-    private String redirectUri;
+    private String githubRedirectUri;
 
 
+    @Value("${gitee.client.id}")
+    private String giteeClientId;
+    @Value("${gitee.client.secret}")
+    private String giteeClientSecret;
+    @Value("${gitee.redirect.uri}")
+    private String giteeRedirectUri;
 
 
     @Autowired
@@ -46,9 +59,9 @@ public class AuthorizeController {
                            HttpServletResponse response){
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
-        accessTokenDTO.setClient_id(clientId);
-        accessTokenDTO.setClient_secret(clientSecret);
-        accessTokenDTO.setRedirect_uri(redirectUri);
+        accessTokenDTO.setClient_id(githubClientId);
+        accessTokenDTO.setClient_secret(githubClientSecret);
+        accessTokenDTO.setRedirect_uri(githubRedirectUri);
         accessTokenDTO.setCode(code);
 
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
@@ -61,7 +74,7 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUserDTO.getName());
             user.setAccountId(String.valueOf(githubUserDTO.getId()));
-
+            user.setLognet(0);
             user.setAvatarUrl(githubUserDTO.getAvatar_url());
             userService.createOrUpDate(user);
 
@@ -74,6 +87,52 @@ public class AuthorizeController {
         }
 
     }
+
+
+
+
+
+    @GetMapping("/callbackgitee")
+    public String callbackgitee(@RequestParam(name="code") String code,
+                           HttpServletResponse response){
+
+        AccessTokenGiteeDTO accessTokenGiteeDTO = new AccessTokenGiteeDTO();
+        accessTokenGiteeDTO.setClient_id(giteeClientId);
+        accessTokenGiteeDTO.setClient_secret(giteeClientSecret);
+        accessTokenGiteeDTO.setRedirect_uri(giteeRedirectUri);
+        accessTokenGiteeDTO.setCode(code);
+
+        String accessToken = giteeProvider.getAccessToken(accessTokenGiteeDTO);
+        GiteeUserDTO giteeUserDTO = giteeProvider.getUser(accessToken);
+
+        if((giteeUserDTO != null) && (giteeUserDTO.getId() != null)){
+
+            User user = new User();
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
+            user.setName(giteeUserDTO.getName());
+            user.setAccountId(String.valueOf(giteeUserDTO.getId()));
+            user.setLognet(1);
+            user.setAvatarUrl(giteeUserDTO.getAvatar_url());
+            userService.createOrUpDate(user);
+
+            response.addCookie(new Cookie("token",token));
+            //登陆成功 写cookie 和 session
+            return "redirect:/";
+        } else{
+            //登陆失败，重新登录
+            return "redirect:/";
+        }
+
+    }
+
+
+
+
+
+
+
+
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request,
