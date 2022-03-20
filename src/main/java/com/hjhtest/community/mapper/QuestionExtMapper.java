@@ -10,6 +10,8 @@ import java.util.List;
 public interface QuestionExtMapper {
 
     int incView(Question record);
+    int incCommentCount(Question recoder);
+    List<Question> selectRelated(Question question );
 
 
 }

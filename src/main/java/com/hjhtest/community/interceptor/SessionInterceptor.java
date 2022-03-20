@@ -27,8 +27,6 @@ public class SessionInterceptor implements HandlerInterceptor {
     private UserMapper userMapper;
 
 
-
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 

@@ -25,6 +25,10 @@ body{
     height: 40px;
 }
 
+.user-body{
+    padding-top: 10px;
+}
+
 .text-describe{
 
 }
@@ -41,4 +45,108 @@ body{
 .jumbotron{
     margin: 50px;
 
+}
+
+.question-title{
+    margin-top:25px
+}
+
+.question-tag{
+    margin-right: 5px;
+}
+
+.comments{
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+
+.comment{
+    margin: 10px 0;
+}
+
+.btn-comment{
+    float: right;
+    padding: 4px 12px;
+    margin: 6px 5px;
+}
+.commenting-body{
+    padding-bottom: 25px;
+}
+
+.comment-sp{
+    margin-top: 0;
+}
+
+.comment-list-body{
+    margin-top: 4px;
+}
+
+.comment-menu .thumb-up-body{
+    margin-right: 4px;
+    margin-left: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.comment-menu .thumb-up-body:hover{
+    color: #2aabd2;
+}
+
+.comment-menu .secondary-comment-body{
+    margin-right: 4px;
+    margin-left: 4px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.comment-menu .secondary-comment-body:hover{
+    color: #2aabd2;
+}
+
+.comment-menu .onclick{
+    color: #2aabd2;
+}
+
+.comment-menu{
+    color:#999999;
+}
+
+.comment-second{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.button-submit-comment{
+    padding: 4px 12px;
+    margin: 6px 5px;
+}
+
+.second-list-panel{
+    padding-bottom: 45px;
+}
+
+.title-list{
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.title{
+
+}
+
+.title-list  .title:hover{
+    text-decoration: none;
+    color: #499ef3;
+}
+
+
+.notice{
+    background-color: #ff6767;
 }
